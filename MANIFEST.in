@@ -1,0 +1,3 @@
+include README.md
+include requirements.txt
+recursive-include jupyterhub_oauth_spawner *
