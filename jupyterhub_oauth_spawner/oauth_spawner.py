@@ -1,5 +1,6 @@
 from jupyterhub.spawner import LocalProcessSpawner
 from traitlets import Any
+from tornado import gen
 
 
 class OAuthSpawner(LocalProcessSpawner):
@@ -41,6 +42,7 @@ class OAuthSpawner(LocalProcessSpawner):
         env["USER"] = self.user.name
         return env
 
+    @gen.coroutine
     def start(self):
         if self.pre_start_hook:
             self.pre_start_hook(self.user, "Pre Start")
@@ -48,6 +50,7 @@ class OAuthSpawner(LocalProcessSpawner):
         if self.post_start_hook:
             self.post_start_hook(self.user, "Post Start")
 
+    @gen.coroutine
     def stop(self, now=False):
         if self.pre_stop_hook:
             self.pre_stop_hook(self.user, "Pre Stop")
