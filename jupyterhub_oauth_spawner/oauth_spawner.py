@@ -43,14 +43,14 @@ class OAuthSpawner(LocalProcessSpawner):
 
     def start(self):
         if self.pre_start_hook:
-            self.pre_start_hook(self.user)
+            self.pre_start_hook(self.user, "Pre Start")
         super(OAuthSpawner, self).start()
         if self.post_start_hook:
-            self.post_start_hook(self.user)
+            self.post_start_hook(self.user, "Post Start")
 
     def stop(self, now=False):
         if self.pre_stop_hook:
-            self.pre_stop_hook(self.user)
+            self.pre_stop_hook(self.user, "Pre Stop")
         super(OAuthSpawner, self).stop(now)
         if self.post_stop_hook:
-            self.post_stop_hook(self.user)
+            self.post_stop_hook(self.user, "Post Stop")

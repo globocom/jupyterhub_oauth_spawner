@@ -24,12 +24,14 @@ c.OAuthSpawner.post_start_hook = your_function
 c.OAuthSpawner.post_stop_hook = your_function
 ```
 
-**your_function** should expect and **user_object** with attribute **name** for user login, so in your function:
+**your_function** should expect and **user_object** with attributes **name** for user login and **hook_name** with hook called.
+
+So in your function:
 
 
 ```
 
-your_function(user):
-    send_info(user.name)
+your_function(user, hook_name):
+    send_info(user.name, hook_name)
 
 ```
