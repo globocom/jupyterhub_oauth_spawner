@@ -46,16 +46,15 @@ class OAuthSpawner(LocalProcessSpawner):
     def start(self):
         if self.pre_start_hook:
             self.pre_start_hook(self.user, "pre_start_hook")
-        returned = super(OAuthSpawner, self).start()
+        super(OAuthSpawner, self).start()
         if self.post_start_hook:
             self.post_start_hook(self.user, "post_start_hook")
-        return returned
+        return (self.ip or '127.0.0.1', self.port)
 
     @gen.coroutine
     def stop(self, now=False):
         if self.pre_stop_hook:
             self.pre_stop_hook(self.user, "pre_stop_hook")
-        returned = super(OAuthSpawner, self).stop(now)
+        super(OAuthSpawner, self).stop(now)
         if self.post_stop_hook:
             self.post_stop_hook(self.user, "post_stop_hook")
-        return returned
