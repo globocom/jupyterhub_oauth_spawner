@@ -10,25 +10,25 @@ class OAuthSpawner(LocalProcessSpawner):
     """
 
     pre_start_hook = Any(None, config=True,
-        help="""Python callable or importstring thereof
+        help="""Python callable thereof
         to be called before the start of jupyter notebook.
         """
     )
 
     post_start_hook = Any(None, config=True,
-        help="""Python callable or importstring thereof
+        help="""Python callable thereof
         to be called after the start of jupyter notebook.
         """
     )
 
     pre_stop_hook = Any(None, config=True,
-        help="""Python callable or importstring thereof
+        help="""Python callable thereof
         to be called before the stop of jupyter notebook.
         """
     )
 
     post_stop_hook = Any(None, config=True,
-        help="""Python callable or importstring thereof
+        help="""Python callable thereof
         to be called after the stop of jupyter notebook.
         """
     )
@@ -45,15 +45,15 @@ class OAuthSpawner(LocalProcessSpawner):
     @gen.coroutine
     def start(self):
         if self.pre_start_hook:
-            self.pre_start_hook(self.user, "Pre Start")
+            self.pre_start_hook(self.user, "pre_start_hook")
         super(OAuthSpawner, self).start()
         if self.post_start_hook:
-            self.post_start_hook(self.user, "Post Start")
+            self.post_start_hook(self.user, "post_start_hook")
 
     @gen.coroutine
     def stop(self, now=False):
         if self.pre_stop_hook:
-            self.pre_stop_hook(self.user, "Pre Stop")
+            self.pre_stop_hook(self.user, "pre_stop_hook")
         super(OAuthSpawner, self).stop(now)
         if self.post_stop_hook:
-            self.post_stop_hook(self.user, "Post Stop")
+            self.post_stop_hook(self.user, "post_stop_hook")
