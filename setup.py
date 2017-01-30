@@ -28,12 +28,6 @@ with open(pjoin(here, 'jupyterhub_oauth_spawner', '__version__.py')) as f:
     exec(f.read(), {}, version_ns)
 
 
-def _post_install(dir):
-    from subprocess import call
-    call([sys.executable, pjoin(here, 'jupyterhub_customizations', 'jupyter_post_install.py')],
-         cwd=pjoin(here, 'jupyterhub_customizations'))
-
-
 setup_args = dict(
     name                = 'jupyterhub_oauth_spawner',
     packages            = ['jupyterhub_oauth_spawner'],
