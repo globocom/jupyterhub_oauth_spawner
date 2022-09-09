@@ -1,1 +1,1 @@
-jupyterhub==0.7.2
+jupyterhub==1.5.0
